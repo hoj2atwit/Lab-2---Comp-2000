@@ -36,12 +36,14 @@ public class Testing {
 		Scanner input = new Scanner(System.in);
 		System.out.printf("Type in a desired infix to test: ");
 		
-		// Converts infix to postfix and saves string to temp
-		String temp = infixToPostfix.convert(input.nextLine());
-		System.out.printf("Postfix String: %s%n",temp);
-		
 		// Converts postfix to double and saves to ans
 		try {
+			// Converts infix to postfix and saves string to temp
+			String temp = infixToPostfix.convert(input.nextLine());
+			if(temp != null) {
+				System.out.printf("Postfix String: %s%n",temp);
+			}
+			
 			double ans = PostfixEvaluator.calculate(temp);
 			
 			// Holds answer as string for formatting decimal places

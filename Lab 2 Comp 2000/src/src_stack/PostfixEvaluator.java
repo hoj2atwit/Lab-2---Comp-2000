@@ -74,8 +74,8 @@ public class PostfixEvaluator {
 			} else if (isOperand(curChar)) {
 				tempStr += curChar;
 				if (entry.charAt(i+1) != ' ') {
-					System.out.printf("Incorrect postfix! (Check operands)");
-					System.exit(0);
+					System.out.printf("Incorrect postfix! (Check operands)%n");
+					return null;
 				}
 				temp.push(tempStr);
 			}
@@ -98,11 +98,12 @@ public class PostfixEvaluator {
 	 * @param entry: String should be one length string, wither ^, *, /, + or -
 	 * @return int: integer according to operation
 	 */
+	@SuppressWarnings("null")
 	private static int getOpType(String entry) {
 		int stringLength = entry.length();
 		if (stringLength != 1) {
-			System.out.printf("Incorrect operation syntax! (getOpType, postfixCalculation.java)");
-			System.exit(0);
+			System.out.printf("Incorrect operation syntax! (getOpType, postfixCalculation.java)%n");
+			return (Integer) null;
 		}
 		char operand = entry.charAt(0);
 		if (operand == '^') {
@@ -117,8 +118,7 @@ public class PostfixEvaluator {
 			return 4;
 		} else {
 			System.out.printf("Incorrect operation syntax! (getOptype, error message 2, postfixCalculation.java");
-			System.exit(0);
-			return -1;
+			return (Integer) null;
 		}
 	}
 	
@@ -127,6 +127,7 @@ public class PostfixEvaluator {
 	 * @param entry: Integer equal to or greater than 0
 	 * @return int: Integer conversion of input String
 	 */
+	@SuppressWarnings("null")
 	private static double toNum(String entry) {
 		int stringLength = entry.length();
 		double sum = 0;
@@ -137,7 +138,8 @@ public class PostfixEvaluator {
 				sum += (current - 48)*Math.pow(10, i);
 			}
 		} else {
-			System.out.printf("Invalid string input to toNum! (toNum, postfixCalculation)");
+			System.out.printf("Invalid string input to toNum! (toNum, postfixCalculation)%n");
+			return (Double) null;
 		}
 		
 		return sum;
@@ -150,6 +152,7 @@ public class PostfixEvaluator {
 	 * @param operand: Operation to be done with a and b
 	 * @return double: a and b operated with operand
 	 */
+	@SuppressWarnings("null")
 	private static double doMath(double a, double b, String operand) {
 		double answer = 0;
 		int opType = getOpType(operand);
@@ -164,8 +167,8 @@ public class PostfixEvaluator {
 		} else if (opType == 4) {			// -
 			answer = a-b;
 		} else {
-			System.out.printf("Invalid operand! (doMath, postfixCalculation)");
-			System.exit(0);
+			System.out.printf("Invalid operand! (doMath, postfixCalculation)%n");
+			return (Double) null;
 		}
 		return answer;
 	}

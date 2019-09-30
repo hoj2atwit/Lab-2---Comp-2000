@@ -64,8 +64,8 @@ public class infixToPostfix {
 						}
 					}					
 				} catch (EmptyStackException e) {
-					System.out.printf("infix is unbalanced! (Parenthesis error)");
-					System.exit(0);
+					System.out.printf("infix is unbalanced! (Parenthesis error)%n");
+					return null;
 				}
 				
 				
@@ -97,19 +97,19 @@ public class infixToPostfix {
 					operands.push(curChar);
 				}
 			} else {
-				System.out.printf("infix is unbalanced! (Invalid character)");
-				System.exit(0);
+				System.out.printf("infix is unbalanced! (Invalid character)%n");
+				return null;
 			}
 			// Case for when there are no more chars in infix
 			if (infix.isEmpty()) {
 				if (noNums - 1 != noOperands) {
-					System.out.printf("infix is unbalanced! (invalid ratio of numbers and operands)");
-					System.exit(0);
+					System.out.printf("infix is unbalanced! (invalid ratio of numbers and operands)%n");
+					return null;
 				}
 				while (!operands.isEmpty()) {
 					if (isFirstParenthesis((operands.peek()))){
-						System.out.printf("infix is unbalanced! (Parenthesis error; closing parenthesis not detected)");
-						System.exit(0);
+						System.out.printf("infix is unbalanced! (Parenthesis error; closing parenthesis not detected)%n");
+						return null;
 					}
 					postfix += (char)operands.pop();
 					postfix += ' ';
@@ -138,6 +138,7 @@ public class infixToPostfix {
 	 * @param entry
 	 * @return
 	 */
+	@SuppressWarnings("null")
 	private static int getPref(char entry) {
 		if (entry == 40 || entry == 91 || entry == 123) {		//(, [ {
 			return 0;
@@ -149,8 +150,7 @@ public class infixToPostfix {
 			return 3;
 		} else {
 			System.out.printf("Incorrect usage of getInfix!%n");
-			System.exit(0);
-			return 0;
+			return (Integer) null;
 		}
 	}
 	
