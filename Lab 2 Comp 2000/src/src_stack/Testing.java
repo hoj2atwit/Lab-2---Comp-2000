@@ -86,9 +86,10 @@ public class Testing {
 		String yn = input.next();
 		if (yn.equals("y")) {
 			two();
+		}else {
+			System.out.printf("Program terminating!%n");
+			input.close();
 		}
-		System.out.printf("Program terminating!%n");
-		input.close();
 	}
 
 }
