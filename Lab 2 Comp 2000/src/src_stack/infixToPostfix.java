@@ -80,6 +80,9 @@ public class infixToPostfix {
 					operands.push(curChar);
 				} else { 	// If preference of char is greater than operand stored, pops and adds to postfix until it encounters parenthesis or is empty
 					while (!operands.isEmpty() && !isFirstParenthesis(operands.peek())) {
+						if (getPref(operands.peek())>getPref(curChar)) {
+							break;
+						}
 						postfix += operands.pop();
 						postfix += ' ';
 					}
