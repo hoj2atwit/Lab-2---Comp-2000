@@ -22,15 +22,10 @@ public class PostfixEvaluator {
 				numbers.push(toNum(current));
 				// Check for if element is an operand; proceeds to operation if true
 			} else if (isOperand(current.charAt(0))) {
-				if (current.charAt(0) == '-') {			// Case for negative; Turns number into negative and adds instead
-					// Pops first number, as it is used "second" for division/power purposes
-					temp = numbers.pop();
-					// Takes in number a, number b, operand and does math
-					temp = doMath(-numbers.pop(), temp, "+");
-				} else {
-					temp = numbers.pop();
-					temp = doMath(numbers.pop(), temp, current);
-				}
+				// Pops first number, as it is used "second" for division/power purposes
+				temp = numbers.pop();
+				// Takes in number a, number b, operand and does math
+				temp = doMath(numbers.pop(), temp, current);
 				// If operation was the last operation in postfix, sets answer to be returned
 				if (postfix.isEmpty()) {
 					answer = temp;
