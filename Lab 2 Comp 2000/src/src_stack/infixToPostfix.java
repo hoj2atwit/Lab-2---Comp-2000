@@ -1,7 +1,5 @@
 package src_stack;
 
-import java.util.Scanner;
-
 public class infixToPostfix {
 	
 	public static String convert(String entry) {
@@ -75,14 +73,47 @@ public class infixToPostfix {
 			// Case for operands
 			} else if (isOperand(curChar)) {
 				noOperands++;
+				/*
 				// If operands is empty OR if preference for current char is less than or equal to stored operand, OR first operand is a parenthesis, it pushes
 				if (operands.isEmpty() || getPref(curChar) <= getPref(operands.peek()) || isFirstParenthesis(operands.peek())) {
 					operands.push(curChar);
 				} else { 	// If preference of char is greater than operand stored, pops and adds to postfix until it encounters parenthesis or is empty
 					while (!operands.isEmpty() && !isFirstParenthesis(operands.peek())) {
-						if (getPref(operands.peek())>getPref(curChar)) {
+						if (getPref(operands.peek()) < getPref(curChar)) {
+							postfix += operands.pop();
+							postfix += ' ';
+						} else {
 							break;
 						}
+					}
+					operands.push(curChar);
+				}
+				*/
+				if (operands.isEmpty() || isFirstParenthesis(operands.peek())){
+					operands.push(curChar);
+				} else if ((getPref(curChar) == 3) && getPref(operands.peek()) == 3) {
+					while (!operands.isEmpty() && isFirstParenthesis(operands.peek())){
+						postfix += operands.pop();
+						postfix += ' ';
+					}
+					operands.push(curChar);
+				} else if (getPref(curChar) == getPref(operands.peek())) {
+					if (getPref(curChar) == 1) {
+						operands.push(curChar);
+					} else {
+						postfix += operands.pop();
+						postfix += ' ';
+						operands.push(curChar);
+					}
+				} else if (getPref(curChar) < getPref(operands.peek())) {
+					operands.push(curChar);
+				} else if (getPref(curChar) > getPref(operands.peek())) {
+					int temp = getPref(operands.peek());
+					/*postfix += operands.pop();
+					postfix += ' ';
+					operands.push(curChar);
+					*/
+					while ((!operands.isEmpty() && !isFirstParenthesis(operands.peek())) && (getPref(operands.peek()) == temp)) {
 						postfix += operands.pop();
 						postfix += ' ';
 					}
