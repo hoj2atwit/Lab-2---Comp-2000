@@ -25,6 +25,7 @@ public class LinkedStack<T> implements StackInterface<T> {
 	 * Initializes Stack with input node as firstNode
 	 * @param entry
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public LinkedStack(Node entry) {
 		firstNode = entry;
 	}
@@ -33,6 +34,7 @@ public class LinkedStack<T> implements StackInterface<T> {
 	 * If stack is empty, sets first node as a node with input data. Else, creates a node with entered data,
 	 * makes original head as the node second to the new node, makes new node the firstNode.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void push(T anEntry) {
 		if (firstNode != null) {
@@ -45,6 +47,7 @@ public class LinkedStack<T> implements StackInterface<T> {
 	/**
 	 * Removes first node and sets next node as firstnode, then returns removed node's data. If empty, throws EmptyStackException with desc
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
 		T temp;

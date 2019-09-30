@@ -30,7 +30,6 @@ public class ArrayStack<T> implements StackInterface<T> {
 	/**
 	 * Pushes entry onto the top of the stack, sends msg if full
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void push(T anEntry) {
 		if (numberOfEntries < capacity) {

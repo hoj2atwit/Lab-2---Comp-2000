@@ -3,14 +3,13 @@ package src_stack;
 public class infixToPostfix {
 	
 	public static String convert(String entry) {
-		LinkedStack<Character> operands = new LinkedStack();		// Used to store operands
+		LinkedStack<Character> operands = new LinkedStack<Character>();		// Used to store operands
 		ArrayStack<Character> infix = getInfix(entry);				// infix in form of ArrayStack
 		String postfix = "";										// Postfix String
 		int noNums = 0;												// Used to keep track of # of numbers
 		int noOperands = 0;											// Used to keep track of # of operands
 		int stringLength = entry.length();							// infix length
 		char curChar;												// Current char being used in for loop
-		char nextChar;												// Next char in loop if it exists
 		for (int i = 0; i < stringLength; i++) {
 			curChar = infix.pop();
 			
@@ -73,22 +72,7 @@ public class infixToPostfix {
 			// Case for operands
 			} else if (isOperand(curChar)) {
 				noOperands++;
-				/*
-				// If operands is empty OR if preference for current char is less than or equal to stored operand, OR first operand is a parenthesis, it pushes
-				if (operands.isEmpty() || getPref(curChar) <= getPref(operands.peek()) || isFirstParenthesis(operands.peek())) {
-					operands.push(curChar);
-				} else { 	// If preference of char is greater than operand stored, pops and adds to postfix until it encounters parenthesis or is empty
-					while (!operands.isEmpty() && !isFirstParenthesis(operands.peek())) {
-						if (getPref(operands.peek()) < getPref(curChar)) {
-							postfix += operands.pop();
-							postfix += ' ';
-						} else {
-							break;
-						}
-					}
-					operands.push(curChar);
-				}
-				*/
+				
 				if (operands.isEmpty() || isFirstParenthesis(operands.peek())){
 					operands.push(curChar);
 				} else if ((getPref(curChar) == 3) && getPref(operands.peek()) == 3) {
@@ -148,8 +132,8 @@ public class infixToPostfix {
 	 * @param infix
 	 * @return
 	 */
-	private static ArrayStack getInfix(String infix) {
-		ArrayStack<Character> temp = new ArrayStack(infix.length());
+	private static ArrayStack<Character> getInfix(String infix) {
+		ArrayStack<Character> temp = new ArrayStack<Character>(infix.length());
 		for (int i = infix.length() - 1; i >= 0; i--) {
 			temp.push(infix.charAt(i));
 		}

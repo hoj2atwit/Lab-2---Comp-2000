@@ -8,8 +8,6 @@ public class Testing {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		String temp = "";
-		String uno = "1";
-		String doce = "2";
 		System.out.printf("Input 1 to print pre-coded test messages, 2 to test your own infixes: ");
 		try {
 			temp = input.next();
@@ -25,6 +23,7 @@ public class Testing {
 			System.out.printf("Enter a valid input!%n");
 			System.exit(0);
 		}
+		input.close();
 
 	}
 	

@@ -10,7 +10,7 @@ public class PostfixEvaluator {
 	 */
 	public static double calculate(String postfixString) {
 		LinkedStack<String> postfix = toStringArray(postfixString);
-		LinkedStack<Double> numbers = new LinkedStack();
+		LinkedStack<Double> numbers = new LinkedStack<Double>();
 		double answer = 0;
 		double temp = 0;
 		// Loop runs until postfix array is empty
@@ -44,8 +44,8 @@ public class PostfixEvaluator {
 	 * @return LinkedStack<String>: postfix string changed into linkedstack with each element being a unique number/operand, all spaces removed
 	 */
 	private static LinkedStack<String> toStringArray(String entry){
-		LinkedStack<String> temp = new LinkedStack();				// Entered backwards; will fix with second Stack
-		LinkedStack<String> temp2 = new LinkedStack();				// Exists cause i forgot to put in elements backwards in temp
+		LinkedStack<String> temp = new LinkedStack<String>();				// Entered backwards; will fix with second Stack
+		LinkedStack<String> temp2 = new LinkedStack<String>();				// Exists cause i forgot to put in elements backwards in temp
 		int stringLength = entry.length();
 		char curChar;
 		String tempStr = "";

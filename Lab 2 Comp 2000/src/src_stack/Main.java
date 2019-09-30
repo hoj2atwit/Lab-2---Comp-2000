@@ -31,6 +31,7 @@ public class Main {
 		
 		// STACK USAGE: REVERSING STRING
 		ArrayStack<Character> cStack = new ArrayStack<>();
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Enter a phrase, and I will reverse it");

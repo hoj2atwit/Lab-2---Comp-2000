@@ -1,6 +1,7 @@
 package src_stack;
 
 
+@SuppressWarnings("serial")
 public class EmptyStackException extends RuntimeException{
 	
 	public EmptyStackException() {
