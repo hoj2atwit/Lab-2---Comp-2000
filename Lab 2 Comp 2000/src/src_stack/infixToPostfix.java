@@ -71,15 +71,8 @@ public class infixToPostfix {
 				
 			// Case for operands
 			} else if (isOperand(curChar)) {
-				noOperands++;
-				
+				noOperands++;				
 				if (operands.isEmpty() || isFirstParenthesis(operands.peek())){
-					operands.push(curChar);
-				} else if ((getPref(curChar) == 3) && getPref(operands.peek()) == 3) {
-					while (!operands.isEmpty() && isFirstParenthesis(operands.peek())){
-						postfix += operands.pop();
-						postfix += ' ';
-					}
 					operands.push(curChar);
 				} else if (getPref(curChar) == getPref(operands.peek())) {
 					if (getPref(curChar) == 1) {
@@ -93,11 +86,11 @@ public class infixToPostfix {
 					operands.push(curChar);
 				} else if (getPref(curChar) > getPref(operands.peek())) {
 					int temp = getPref(operands.peek());
-					/*postfix += operands.pop();
-					postfix += ' ';
-					operands.push(curChar);
-					*/
 					while ((!operands.isEmpty() && !isFirstParenthesis(operands.peek())) && (getPref(operands.peek()) == temp)) {
+						postfix += operands.pop();
+						postfix += ' ';
+					}
+					if (!operands.isEmpty() && getPref(operands.peek()) == getPref(curChar)) {
 						postfix += operands.pop();
 						postfix += ' ';
 					}
