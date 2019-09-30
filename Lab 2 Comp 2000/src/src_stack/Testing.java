@@ -48,7 +48,40 @@ public class Testing {
 		
 		// Converts postfix to double and saves to ans
 		double ans = PostfixEvaluator.calculate(temp);
-		System.out.printf("Postfix evaluation: %f%n", ans);
+		
+		// Holds answer as string for formatting decimal places
+		String ansString;
+		if(ans%1==0) {
+			ansString = String.format("%.0f", ans);
+		}else {
+			ansString = String.format("%f", ans);
+			int latestZero = 0;
+			boolean foundZero = false;
+			
+			//Removes any extra zero's that are remaining in decimal
+			for(int i = 0; i < ansString.length(); i++) {
+				//Starts checking after decimal
+				if(ansString.charAt(i) == '.') {
+					for(int j = i+1; j < ansString.length(); j++) {
+						if(ansString.charAt(j) == '0' && !foundZero) {
+							latestZero = j;
+							foundZero = true;
+						}else if(!(ansString.charAt(j) == '0')){
+							latestZero = 0;
+							foundZero = false;
+						}
+					}
+					break;
+				}
+			}
+			
+			//Removes extra 0's
+			if(latestZero != 0 && foundZero) {
+				ansString = ansString.substring(0, latestZero);
+			}
+		}
+		
+		System.out.printf("Postfix evaluation: %s%n", ansString);
 		
 		System.out.printf("Test another infix? Enter y to go again, anything else to exit: ");
 		String yn = input.next();
