@@ -2,11 +2,12 @@ package src_stack;
 
 import java.util.Scanner;
 
-public class Testing {
+public class EvaluationTester {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		String temp = "";
+		System.out.println("Note: This program supports multi-digit numbers.");
 		System.out.printf("Input 1 to print pre-coded test messages, 2 to test your own infixes: ");
 		while(!(temp.equals("1")) && !(temp.equals("2"))) {
 			temp = input.next();
@@ -26,7 +27,40 @@ public class Testing {
 	 * Pre-defined testing message outputs
 	 */
 	private static void one() {
+		String temp = "";
+		System.out.println("Now testing pre-defined inputs");
+		System.out.println("------------------------------");
 		
+		temp = "1+3^3^2/5";
+		System.out.println("Testing: " + temp);
+		System.out.println("Postfix: " + infixToPostfix.convert(temp));
+		if (infixToPostfix.convert(temp) != null) {
+			System.out.printf("Result: %f%n%n", PostfixEvaluator.calculate(infixToPostfix.convert(temp)));
+		}
+		System.out.println();
+		
+		temp = "(7-2)+(4*9";
+		System.out.println("Testing: " + temp);
+		System.out.println("Postfix: " + infixToPostfix.convert(temp));
+		if (infixToPostfix.convert(temp) != null) {
+			System.out.printf("Result: %f%n%n", PostfixEvaluator.calculate(infixToPostfix.convert(temp)));
+		}
+		System.out.println();
+		
+		temp = "1+1+1+3/4+5/6*8/2+9-22/60";
+		System.out.println("Testing: " + temp);
+		System.out.println("Postfix: " + infixToPostfix.convert(temp));
+		if (infixToPostfix.convert(temp) != null) {
+			System.out.printf("Result: %f%n%n", PostfixEvaluator.calculate(infixToPostfix.convert(temp)));
+		}
+		System.out.println();
+		
+		temp = "4*(9+3/[2*{9+2}])";
+		System.out.println("Testing: " + temp);
+		System.out.println("Postfix: " + infixToPostfix.convert(temp));
+		if (infixToPostfix.convert(temp) != null) {
+			System.out.printf("Result: %f%n%n", PostfixEvaluator.calculate(infixToPostfix.convert(temp)));
+		}
 	}
 	
 	/**
